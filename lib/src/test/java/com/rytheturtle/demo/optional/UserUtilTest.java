@@ -9,6 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class PersonUtilTest {
     @Test void someLibraryMethodReturnsTrue() {
          
-        assertTrue(PersonUtil.isEmailValidated(null), " should return 'true'");
+        assertTrue(UserUtil.isEmailValidated(null), " should return 'true'");
     }
 }

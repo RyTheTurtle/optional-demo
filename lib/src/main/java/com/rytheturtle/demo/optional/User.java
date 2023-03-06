@@ -1,5 +1,5 @@
 package com.rytheturtle.demo.optional;
 
-public class Person {
+public class User {
     
 }

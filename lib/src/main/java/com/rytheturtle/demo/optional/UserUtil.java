@@ -3,9 +3,10 @@
  */
 package com.rytheturtle.demo.optional;
 
-public class PersonUtil {
 
-    public static boolean isEmailValidated(Person person) {
+public class UserUtil {
+
+    public static boolean isEmailValidated(User user) {
         return true;
     }
 
