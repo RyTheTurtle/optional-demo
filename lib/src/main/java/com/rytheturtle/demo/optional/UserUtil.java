@@ -3,11 +3,24 @@
  */
 package com.rytheturtle.demo.optional;
 
+import com.rytheturtle.demo.optional.user.*; 
+import com.rytheturtle.demo.optional.user.address.*;
+import java.util.*;
+import java.util.stream.*;
 
 public class UserUtil {
 
-    public static boolean isEmailValidated(User user) {
-        return true;
+    private static final Set<String> storeZipCodes = Stream.of("80208").collect(Collectors.toCollection(HashSet::new));
+
+    private UserUtil(){}
+    
+    public static boolean isNearPhysicalLocation(User user) {
+        String mainZip = user.getAddress()
+                .getState()
+                .getPostalCode()
+                .getZip();
+
+        return storeZipCodes.contains(mainZip);
     }
 
 }

@@ -5,10 +5,35 @@ package com.rytheturtle.demo.optional;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import com.rytheturtle.demo.optional.user.*;
+import com.rytheturtle.demo.optional.user.address.*;
 
-class PersonUtilTest {
-    @Test void someLibraryMethodReturnsTrue() {
-         
-        assertTrue(UserUtil.isEmailValidated(null), " should return 'true'");
+class UserUtilTest {
+    
+    @Test void isUserNearPhysicalLocationReturnsTrueWhenSameZip() {
+        // given a user with a address that has a valid postal code, utility should return true
+        User user = buildTestUserWithFullAddress();
+        assertTrue(UserUtil.isNearPhysicalLocation(user), " should return 'true'");
+    }
+
+    // @Test void isUserNearPhysicalLocationReturnsFalseIfMissingPostalCode() {
+    //     User user = buildTestUserWithFullAddress();
+    //     user.getAddress().getState().setPostalCode(null); 
+    //     assertFalse(UserUtil.isNearPhysicalLocation(user), " should return 'false'");
+    // }
+
+    private User buildTestUserWithFullAddress(){
+        User user = new User();
+        Address address = new Address();
+        StateAddress state = new StateAddress();
+        state.setCity("Denver");
+        state.setState("Colorado");
+        PostalCode zip = new PostalCode();
+        zip.setZip("80208");
+        zip.setZipPlus4("80208-1234");
+        state.setPostalCode(zip);
+        address.setState(state);
+        user.setAddress(address);
+        return user;
     }
 }
