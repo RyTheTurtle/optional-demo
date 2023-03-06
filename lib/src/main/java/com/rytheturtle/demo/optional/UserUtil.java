@@ -15,12 +15,12 @@ public class UserUtil {
     private UserUtil(){}
     
     public static boolean isNearPhysicalLocation(User user) {
-        String mainZip = user.getAddress()
-                .getState()
-                .getPostalCode()
-                .getZip();
-
-        return storeZipCodes.contains(mainZip);
+        Optional<String> zip = Optional.ofNullable(user)
+                                .map(u -> u.getAddress())
+                                .map(a -> a.getState())
+                                .map(s -> s.getPostalCode())
+                                .map(p -> p.getZip());
+        return storeZipCodes.contains(zip.orElse(""));
     }
 
 }
